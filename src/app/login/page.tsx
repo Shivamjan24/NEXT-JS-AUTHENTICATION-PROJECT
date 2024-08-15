@@ -48,11 +48,14 @@ export default function login(){
                 <input className="rounded-md p-2 my-3 text-black" type="text" id="password" name="password" value={user.password} onChange={(e) => setuser({...user, password: e.target.value})} placeholder="password"/>
                 <br/>
 
-                <button className="bg-orange-700 text-black rounded-lg p-2 font-bold ml-24 mt-10" onClick={loginn}>{disabl ? "NO LOGIN" : "LOGIN HERE"}</button>
+                <button className="bg-orange-700 text-black rounded-lg p-2 font-bold ml-40 mt-10" onClick={loginn}>{disabl ? "NO LOGIN" : "LOGIN HERE"}</button>
                 <br/>
 
-                <div className="mt-6 ml-20"> 
+                <div className="mt-6 ml-36"> 
                     <Link href="/signup">GO TO SIGNUP PAGE</Link>
+                </div>
+                <div className="mt-6 mx-auto"> 
+                    <Link href="/resetpswrd">FORGOT PASSWORD? CLICK HERE TO RESET PASSWORD</Link>
                 </div>  
             </div>
         </div>

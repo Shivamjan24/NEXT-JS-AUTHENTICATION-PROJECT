@@ -34,7 +34,7 @@ export const sendemail = async ({email,emailtype,id}:any) =>{
             to: email,
             subject: emailtype==="VERIFY" ? "email account verification" : "forgot password",
             text: "this email is to verify your email account entered on our website",
-            html: `<p><a href=${process.env.DOMAIN}/verifyemail?token=${token}>Click here</a> to ${emailtype==="VERIFY" ? "verify email" : "reset password"} or copy and paste the link given below in your browser ${process.env.DOMAIN}/verifyemail?token=${token}</p>`,
+            html: `<p><a href=${process.env.DOMAIN}/${emailtype==="VERIFY" ? "verifyemail" : "resetpassword"}?token=${token}>Click here</a> to ${emailtype==="VERIFY" ? "verify email" : "reset password"} or copy and paste the link given below in your browser ${process.env.DOMAIN}/${emailtype==="VERIFY" ? "verifyemail" : "resetpassword"}?token=${token}</p>`,
         };
         
         const mailresponse = await transport.sendMail(message);
