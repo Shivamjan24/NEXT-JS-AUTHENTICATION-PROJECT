@@ -2,22 +2,28 @@
 import axios from "axios"
 import Link from "next/link"
 import React,{useState,useEffect} from "react"
+import toast from "react-hot-toast"
 
 
 export default function verifyemail(){
 
     const [user,setuser]=useState("")
     const [isverified,setverified]=useState(false)
+    let load:any;
 
     const verify = async ()=>{
         try{
+            load=toast.loading("Verifying user")
             const token=window.location.search.split("=")[1]
             const response=await axios.post("/api/users/verifyemail",{token})
+            toast.dismiss(load);
+            toast.success("User verified successfully!!!")
             setuser(response.data.data)
             setverified(true)
         }
         catch(error){
             console.log(error)
+            toast.dismiss(load);
         }
     }
 

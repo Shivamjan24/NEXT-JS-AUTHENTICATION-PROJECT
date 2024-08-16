@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Console } from "console";
+import toast from 'react-hot-toast';
 
 export default function login(){
 
@@ -14,18 +14,25 @@ export default function login(){
     const router=useRouter()
     const [proces, setproces] = useState(false);
     const [disabl,setdisabl]=useState(true);
+    let load:any;
     const loginn = async () =>{
        try 
        {
+            load=toast.loading("Logging in");
             setproces(true);        
             const response=await axios.post("/api/users/login",user);
+            toast.dismiss(load);
             console.log("Login success", response.data);
+            toast.success("Login success");
             router.push("/profile");
             setproces(false);
        } 
        catch (error) 
        {
             console.log("Login failed")
+            toast.error("Wrong email or password");
+            setproces(false);
+            toast.dismiss(load);
        }
     }
 

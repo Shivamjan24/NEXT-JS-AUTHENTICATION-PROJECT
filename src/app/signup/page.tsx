@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import {useRouter} from "next/navigation";
+import toast from "react-hot-toast";
 
 
 export default function signup(){
@@ -17,14 +18,18 @@ export default function signup(){
     const [proces,setproces]=useState(false)
     const signupp = async ()=>{
         try {
+            const load=toast.loading("Signing up");
             setproces(true)
             const response = await axios.post("/api/users/signup", user);
+            toast.dismiss(load);
             console.log("Signup success", response.data);
+            toast.success("Signup success");
             setproces(false)
             router.push("/login");
             
         } catch (error:any) {
             console.log("Signup failed", error.message);
+            toast.error("Email already in use, please use another email id");
         }
         finally{
             setproces(false)

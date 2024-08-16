@@ -1,6 +1,7 @@
 "use client"
 import React,{useState,useEffect} from "react";
 import axios from "axios";
+import toast from "react-hot-toast"
 
 
 export default function resetpswrd(){
@@ -10,7 +11,10 @@ export default function resetpswrd(){
     const redirect = async () =>{
         try 
         {
+            const load=toast.loading("sending email");
             const response=await axios.post("/api/users/resetpswrd",{email});
+            toast.dismiss(load);
+            toast.success("Email sent successfully");
             console.log(response.data);
         } 
         catch (error) 

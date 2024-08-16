@@ -1,20 +1,26 @@
 "use client"
 import axios from "axios";
 import React,{useState,useEffect} from "react";
+import toast from "react-hot-toast";
 
 export default function resetpassword(){
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState(true);
+    let load:any;
 
     const redirect = async () =>{
         try{
+            load=toast.loading("Resetting password");
             const token=window.location.search.split("=")[1];
             const response=await axios.post("/api/users/resetpassword",{token:token,password:password})
+            toast.dismiss(load);
+            toast.success("Password reset successfully");
             console.log(response.data);
         }
         catch(error){
             console.log(error);
+            toast.dismiss(load);
         }
     }
 
