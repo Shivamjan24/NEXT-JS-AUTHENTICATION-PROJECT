@@ -3,7 +3,7 @@ import axios from "axios";
 import React,{useState,useEffect} from "react";
 import toast from "react-hot-toast";
 
-export default function resetpassword(){
+export default function Resetpassword(){
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState(true);

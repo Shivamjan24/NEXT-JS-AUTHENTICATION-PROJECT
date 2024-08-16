@@ -5,7 +5,7 @@ import React,{useState,useEffect} from "react"
 import toast from "react-hot-toast"
 
 
-export default function verifyemail(){
+export default function Verifyemail(){
 
     const [user,setuser]=useState("")
     const [isverified,setverified]=useState(false)

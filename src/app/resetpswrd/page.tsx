@@ -4,7 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast"
 
 
-export default function resetpswrd(){
+export default function Resetpswrd(){
     const [email,setemail]=useState("")
     const [disabl,setdisabl]=useState(true);
 
