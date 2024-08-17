@@ -24,6 +24,10 @@ export default function Login(){
             toast.dismiss(load);
             console.log("Login success", response.data);
             toast.success("Login success");
+            setuser({
+                email:"",
+                password:""
+            })
             router.push("/profile");
             setproces(false);
        } 
@@ -31,6 +35,10 @@ export default function Login(){
        {
             console.log("Login failed")
             toast.error("Wrong email or password");
+            setuser({
+                email:"",
+                password:""
+            })
             setproces(false);
             toast.dismiss(load);
        }
@@ -42,9 +50,9 @@ export default function Login(){
     },[user])
 
     return(
-        <div className="flex flex-wrap">
-            <div className="w-half m-auto rounded-md">
-                <h1 className="text-4xl mt-10 mb-6 ml-20">{proces ? "PROCESSING" : "LOGIN PAGE"}</h1>
+        <div className="flex flex-col items-center justify-center">
+            
+                <h1 className="text-4xl mt-10 mb-6">{proces ? "PROCESSING" : "LOGIN PAGE"}</h1>
                 <br/>
                 
                 <label className="mx-4" htmlFor="email">EMAIL</label>
@@ -52,19 +60,19 @@ export default function Login(){
                 <br/>
 
                 <label className="mx-4" htmlFor="password">PASSWORD</label>
-                <input className="rounded-md p-2 my-3 text-black" type="text" id="password" name="password" value={user.password} onChange={(e) => setuser({...user, password: e.target.value})} placeholder="password"/>
+                <input className="rounded-md p-2 my-3 text-black" type="password" id="password" name="password" value={user.password} onChange={(e) => setuser({...user, password: e.target.value})} placeholder="password"/>
                 <br/>
 
-                <button className="bg-orange-700 text-black rounded-lg p-2 font-bold ml-40 mt-10" onClick={loginn}>{disabl ? "NO LOGIN" : "LOGIN HERE"}</button>
+                <button className="bg-orange-700 text-black rounded-lg p-2 font-bold mt-10" onClick={loginn}>{disabl ? "NO LOGIN" : "LOGIN HERE"}</button>
                 <br/>
 
-                <div className="mt-6 ml-36"> 
+                <div className="mt-6"> 
                     <Link href="/signup">GO TO SIGNUP PAGE</Link>
                 </div>
-                <div className="mt-6 mx-auto"> 
+                <div className="mt-6"> 
                     <Link href="/resetpswrd">FORGOT PASSWORD? CLICK HERE TO RESET PASSWORD</Link>
                 </div>  
-            </div>
+            
         </div>
     )
 }
